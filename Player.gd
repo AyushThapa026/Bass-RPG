@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var MAX_SPEED = 75
+var MAX_SPEED = 50
 var velocity = Vector2.ZERO
 
 onready var animationPlayer = $AnimationPlayer
