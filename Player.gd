@@ -1,7 +1,10 @@
 extends KinematicBody2D
 
-var MAX_SPEED = 50
+var MAX_SPEED = 75
 var velocity = Vector2.ZERO
+
+onready var animationPlayer = $AnimationPlayer
+
 
 
 func _physics_process(delta):
@@ -11,8 +14,13 @@ func _physics_process(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
+		if input_vector.x >  0:
+			animationPlayer.play("RunRight")
+		else:
+			animationPlayer.play("RunLeft")
 		velocity = input_vector
 	else:
+		animationPlayer.play("IdleRight")
 		velocity = Vector2.ZERO
 	
 	velocity = velocity * MAX_SPEED
