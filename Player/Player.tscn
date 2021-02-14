@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Player/placeholder_sprite.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://World/LightSprite.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.7486
@@ -201,13 +202,17 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"Persist",
+]]
 script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_top = 0
-limit_bottom = 100
+limit_left = -16
+limit_top = -2
+limit_right = 426
+limit_bottom = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.75, 0.75 )
@@ -236,3 +241,7 @@ active = true
 parameters/playback = SubResource( 23 )
 parameters/Idle/blend_position = Vector2( 0.000710726, -0.0121458 )
 parameters/Run/blend_position = Vector2( -0.00142145, 0 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.05

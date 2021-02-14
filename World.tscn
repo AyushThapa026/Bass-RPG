@@ -3,12 +3,11 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Room1.png" type="Texture" id=2]
 
-[sub_resource type="StreamTexture" id=2]
-load_path = "res://.import/mainlevbuild.png-990638efbdd850bff415438d42dfc94c.stex"
+[sub_resource type="StreamTexture" id=1]
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=2]
 0/name = "mainlevbuild.png 0"
-0/texture = SubResource( 2 )
+0/texture = SubResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 736, 368, 32, 32 )
@@ -32,10 +31,13 @@ texture = ExtResource( 2 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 145, 104 )
+position = Vector2( 98, 87 )
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.341176, 0, 0, 1 )
