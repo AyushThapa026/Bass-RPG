@@ -244,4 +244,5 @@ parameters/Run/blend_position = Vector2( -0.00142145, 0 )
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
-texture_scale = 0.05
+texture_scale = 0.1
+energy = 0.75
