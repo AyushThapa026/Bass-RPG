@@ -1,2 +1,2 @@
-﻿52112
-C:\Users\AryanSanghi\Downloads\Godot_v3.2.3-stable_mono_win64 (1)\Godot_v3.2.3-stable_mono_win64\Godot_v3.2.3-stable_mono_win64.exe
+﻿55725
+C:\Users\12069\Documents\Godot\Godot_v3.2.3-stable_mono_win64.exe
