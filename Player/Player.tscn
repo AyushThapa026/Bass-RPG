@@ -209,10 +209,11 @@ script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_left = -16
+zoom = Vector2( 1, 0.95 )
+limit_left = -8
 limit_top = -2
 limit_right = 426
-limit_bottom = 200
+limit_bottom = 155
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.75, 0.75 )
