@@ -2,18 +2,16 @@ extends Control
 
 onready var play = $Play
 onready var hoverSound = $Hover
-onready var fade = preload("res://FadeIn.tscn")
+onready var fade = preload("res://UI/FadeIn.tscn")
 
 func _ready():
 	get_viewport().audio_listener_enable_2d = true
 
 func hoverSound():
-	print("hovered")
 	play.grab_focus()
 	hoverSound.play()
 
 func _on_Play_mouse_entered():
-	print("asdfasdfuiags")
 	hoverSound()
 
 
@@ -29,5 +27,5 @@ func _on_Play_pressed():
 	
 
 func change_scene():
-	print("change scnee")
-	get_tree().change_scene("World.tscn")
+	print("change scene")
+	get_tree().change_scene("res://World/World.tscn")
