@@ -16,7 +16,11 @@ _global_script_class_icons={
 [application]
 
 config/name="Bass RPG"
-run/main_scene="res://Title.tscn"
+run/main_scene="res://UI/Title.tscn"
+
+[audio]
+
+default_bus_layout=""
 
 [display]
 
