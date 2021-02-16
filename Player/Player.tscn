@@ -1,8 +1,10 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Player/placeholder_sprite.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://World/LightSprite.png" type="Texture" id=3]
+[ext_resource path="res://Text/8-bit-hud.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Player/StateMachineInit.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.7486
@@ -202,6 +204,17 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="DynamicFont" id=25]
+size = 5
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=26]
+size = 5
+font_data = ExtResource( 4 )
+
 [node name="Player" type="KinematicBody2D" groups=[
 "Persist",
 ]]
@@ -249,5 +262,40 @@ texture_scale = 0.1
 energy = 0.75
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 rotation = 4.71239
 scale = Vector2( 1, 0.25 )
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Rect" type="CollisionShape2D" parent="Area"]
+shape = SubResource( 24 )
+
+[node name="Option" type="RichTextLabel" parent="."]
+margin_left = -32.0
+margin_top = -24.0
+margin_right = 32.0
+margin_bottom = -16.0
+custom_fonts/normal_font = SubResource( 25 )
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StateLabel" type="RichTextLabel" parent="."]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = -24.0
+custom_fonts/normal_font = SubResource( 26 )
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
+[connection signal="area_exited" from="Area" to="." method="_on_Area_area_exited"]
