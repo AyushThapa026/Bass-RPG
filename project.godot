@@ -36,6 +36,7 @@ default_bus_layout=""
 [autoload]
 
 JsonLoader="*res://Scripts/json_loader.gd"
+Globals="*res://Scripts/Globals.gd"
 
 [display]
 
