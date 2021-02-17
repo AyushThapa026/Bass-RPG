@@ -64,8 +64,7 @@ func load_dialogue():# This dialogue is the same as the one above (line 18)
 							 Tween. TRANS_LINEAR, Tween. EASE_IN_OUT
 							)
 						Tween.start()
-						
-						
+
 
 
 func _on_Tween_tween_completed(object, key):

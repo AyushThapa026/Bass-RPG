@@ -37,7 +37,7 @@ texture = ExtResource( 2 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Note" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 94, 9 )
+position = Vector2( 101, 12 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 94, 84 )
@@ -50,7 +50,6 @@ format = 1
 tile_data = PoolIntArray( 2, 0, 0 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.501961, 0.501961, 0.501961, 1 )
 script = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
