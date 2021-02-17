@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Ultimate Placeholder.png-74e16c80a1ee509554d6a6be4ad39092.stex"
+path="res://.import/Note.png-378b31c478ae30cb011e8f1d4ae303f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc/Ultimate Placeholder.png"
-dest_files=[ "res://.import/Ultimate Placeholder.png-74e16c80a1ee509554d6a6be4ad39092.stex" ]
+source_file="res://Interactions/Note2/Note.png"
+dest_files=[ "res://.import/Note.png-378b31c478ae30cb011e8f1d4ae303f2.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

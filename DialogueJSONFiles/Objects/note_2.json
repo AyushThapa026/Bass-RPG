@@ -1,0 +1,23 @@
+{
+    "000":{
+        "type" : "dialogue",
+        "speaker_id" : "none",
+        "portrait_id" : "none",
+        "text" : "When a human falls into the bass realm, they can leave by going to certian locations, but they would have no memory of who they are nor if they are human when.",
+		"next" : "001"
+    },
+	"001":{
+		"type" : "dialogue",
+        "speaker_id" : "none",
+        "portrait_id" : "none",
+        "text" : "This can't apply to me, and I have made my peace with that, but I wonder, what if it was true...",
+		"next" : "002"
+	},
+	"002":{
+		"type" : "dialogue",
+		"speaker_id" : "none",
+		"portrait_id" : "none",
+		"text" : "I should get going, the Rebel Army is incoming, and destruction often follows them...",
+		"next" : "none"
+	}
+}
