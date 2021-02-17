@@ -8,17 +8,35 @@ func _ready():
 
 
 func _state_logic(delta):
-	parent.move_player()
+	if state != states.interacting:
+		parent.move_player()
 	parent.interact()
+	
+	if state == states.run:
+		parent.animationState.travel("Run")
+	elif state == states.idle:
+		parent.animationState.travel("Idle")
+	else:
+		parent.animationState.travel("Idle")
 
 func _get_transition(delta):
 	match state:
 		states.idle:
 			if parent.velocity.x != 0 or parent.velocity.y != 0:
 				return states.run
+			elif parent.interactions.interacting == true:
+				return states.interacting
 		states.run:
 			if (parent.velocity.x == 0) and (parent.velocity.y == 0):
 				return states.idle
+			elif parent.interactions.interacting == true:
+				return states.interacting
+		states.interacting:
+			if parent.interactions.interacting == false:
+				if parent.velocity.x != 0 or parent.velocity.y != 0:
+					return states.run
+				elif (parent.velocity.x == 0) and (parent.velocity.y == 0):
+					return states.idle
 	return null
 	
 func _enter_state(new_state, old_state):

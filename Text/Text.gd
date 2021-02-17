@@ -1,49 +1,71 @@
 extends Control
 
-var dialog = [
-	'Hello there, doctor Justin, the patient is waiting.',
-	'Thanks, tell them I will be there shortly. Thanks.',
-	'Hello Mrs.(Insert Name), how are you?',
-	'Good, lets start.'
-]
-
 onready var Rich = $DialogBox/RichTextLabel
 onready var Tween = $DialogBox/Tween
 onready var next = $DialogBox/next
-var dialog_index = 0
-var finished = true
+onready var player = get_tree().get_root().find_node('Player', true, false)
+var dialogue_index = "000"
+var finished = false
 var reveal_speed = 15
+var dialogue
+var current_dialogue
+
 func _ready():
-	load_dialog()
+	player.connect("interact", self, "get_dialogue_from_JSON")
+
+func get_dialogue_from_JSON(interactions):
+	# Loads the JSON file from the path. The path being "res://DialogueJSONFiles(folder)/InteractableType/ObjectJSONFile
+
+	var database_index = interactions.object_to_interact.database_index
+	dialogue = JsonLoader.load_json_file("res://DialogueJSONFiles/" + str(database_index.Type) + "/" + str(database_index.JSON_FILE) + ".json")
+	
+
+	load_dialogue() # This dialogue is the same as the one below (line 24)
 
 func _finished():
+	if current_dialogue.next != 'none':
+		dialogue_index = current_dialogue.next
 	finished = true
-	dialog_index += 1
+	next.visible = true
 
-func _process(delta):
-	next.visible = finished
-	if Input.is_action_just_pressed("enter"):
-		load_dialog()
-	elif Input.is_action_just_pressed("skip"):
-		if finished == false:
-			Tween.stop(Rich)
-			Rich.percent_visible = 1
-			_finished()
+func _input(event):
+	if dialogue != null:
+		if Input.is_action_just_pressed("enter"):
+			if finished == true:
+				if current_dialogue.next == 'none':
+					visible = false
+					dialogue = null
+					dialogue_index = "000"
+					current_dialogue = null
+					player.interactions.interacting = false
+					print('done interacting')
+				# get good at video games
+				load_dialogue()
+			else:
+				Tween.stop(Rich)
+				Rich.percent_visible = 1
+				_finished()
 
-func load_dialog():
-	finished = false
-	if dialog_index < dialog.size(): 
-		var time = dialog[dialog_index].length() / reveal_speed
-		Rich.bbcode_text = dialog[dialog_index]
-		Rich.percent_visible = 0
-		Tween.interpolate_property(
-			Rich, "percent_visible", 0, 1, time,
-			 Tween. TRANS_LINEAR, Tween. EASE_IN_OUT
-			)
-		Tween.start()
-		
-	else:
-		queue_free()
+func load_dialogue():# This dialogue is the same as the one above (line 18)
+	if dialogue != null:
+		if dialogue.has(dialogue_index):
+			current_dialogue = dialogue[dialogue_index]
+			if current_dialogue.has("type"):
+				match current_dialogue.type:
+					"dialogue":
+						next.visible = false
+						visible = true
+						finished = false
+						var time = current_dialogue.text.length() / reveal_speed
+						Rich.bbcode_text = current_dialogue.text
+						Rich.percent_visible = 0
+						Tween.interpolate_property(
+							Rich, "percent_visible", 0, 1, time,
+							 Tween. TRANS_LINEAR, Tween. EASE_IN_OUT
+							)
+						Tween.start()
+						
+						
 
 
 func _on_Tween_tween_completed(object, key):

@@ -10,11 +10,15 @@ onready var Ray = $RayCast2D
 onready var area = get_node("Area")
 onready var option = $Option
 var database = null;
+var input_vector
+
 var interactions = {
 	"interacting" : false,
 	"ready_to_interact" : false,
 	"object_to_interact" : null
 }
+
+signal interact
 
 func _ready():
 	database = JsonLoader.load_json_file("res://Interactions/intreraction_database.json")
@@ -23,7 +27,7 @@ func _ready():
 
 
 func move_player():
-	var input_vector = Vector2.ZERO
+	input_vector = Vector2.ZERO
 	input_vector.x = (Input.get_action_strength("right") - Input.get_action_strength("left"))
 	input_vector.y = (Input.get_action_strength("down") - Input.get_action_strength("up"))
 	input_vector = input_vector.normalized()
@@ -31,10 +35,10 @@ func move_player():
 	if input_vector != Vector2.ZERO:
 		animationTree.set("parameters/Idle/blend_position", input_vector)
 		animationTree.set("parameters/Run/blend_position", input_vector)
-		animationState.travel("Run")
+		
 		velocity = input_vector
 	else:
-		animationState.travel("Idle")
+		
 		velocity = Vector2.ZERO
 	
 	velocity = velocity * MAX_SPEED
@@ -44,8 +48,12 @@ func interact():
 	if Input.is_action_pressed("interact"):
 		if interactions.ready_to_interact == true and interactions.interacting == false:
 			interactions.interacting = true
+			print('interacted')
+			velocity = Vector2.ZERO
 			
+			emit_signal("interact", interactions)
 			
+
 
 func _on_Area_area_entered(area):
 	# Get the topmost node
@@ -61,7 +69,7 @@ func _on_Area_area_entered(area):
 		interactions.object_to_interact =  {
 		"node" : object,
 		"database_index" : database[object.name],
-		}
+		}	
 
 
 func _on_Area_area_exited(area):
