@@ -22,7 +22,7 @@ func _state_logic(delta):
 func _get_transition(delta):
 	match state:
 		states.idle:
-			if parent.velocity.x != 0 or parent.velocity.y != 0:
+			if (parent.velocity.x != 0 or parent.velocity.y != 0) and parent.interactions.interacting == false:
 				return states.run
 			elif parent.interactions.interacting == true:
 				return states.interacting
@@ -40,6 +40,7 @@ func _get_transition(delta):
 	return null
 	
 func _enter_state(new_state, old_state):
+	print(states.keys()[new_state].capitalize())
 	parent.get_node("StateLabel").bbcode_text = "[center][rainbow]" + states.keys()[new_state].capitalize() + "[/rainbow][/center]"
 	
 	#print(states.keys()[new_state].capitalize())

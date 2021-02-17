@@ -205,7 +205,7 @@ start_node = "Idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 16, 16 )
+extents = Vector2( 12, 12 )
 
 [sub_resource type="DynamicFont" id=25]
 size = 5

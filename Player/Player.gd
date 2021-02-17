@@ -50,7 +50,6 @@ func interact():
 			interactions.interacting = true
 			print('interacted')
 			velocity = Vector2.ZERO
-			
 			emit_signal("interact", interactions)
 			
 
@@ -62,7 +61,7 @@ func _on_Area_area_entered(area):
 	if database.has(object.name) == true:
 		print("in range to use object: " + area.get_owner().name)
 		# Visual effect - for note it would show "Read Note". The action and name would be specified in the JSON file.
-		option.bbcode_text = "[center][rainbow]" + str(database[object.name].Action)  + " " + str(database[object.name].Name) + "[/rainbow][/center]"
+		option.bbcode_text = "[center][color=#fff500]" + str(database[object.name].Action)  + " " + str(database[object.name].Name) + "[/color][/center]"
 		
 		# Set some variables so that everyone who needs to know knows.
 		interactions.ready_to_interact = true
