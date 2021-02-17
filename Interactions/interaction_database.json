@@ -4,5 +4,11 @@
 		"Type" : "Objects",
 		"Name" : "Note",
 		"Action" : "Read"
+	},
+	"Note2":{
+		"JSON_FILE" : "note_2",
+		"Type" : "Objects",
+		"Name" : "Note",
+		"Action" : "Read"
 	}
 }
