@@ -21,7 +21,7 @@ var interactions = {
 signal interact
 
 func _ready():
-	database = JsonLoader.load_json_file("res://Interactions/intreraction_database.json")
+	database = JsonLoader.load_json_file("res://Interactions/interaction_database.json")
 	print(database)
 	
 
