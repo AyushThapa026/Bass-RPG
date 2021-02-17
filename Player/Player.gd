@@ -38,7 +38,6 @@ func move_player():
 		
 		velocity = input_vector
 	else:
-		
 		velocity = Vector2.ZERO
 	
 	velocity = velocity * MAX_SPEED
@@ -49,8 +48,8 @@ func interact():
 		if interactions.ready_to_interact == true and interactions.interacting == false:
 			interactions.interacting = true
 			print('interacted')
-			velocity = Vector2.ZERO
 			emit_signal("interact", interactions)
+			velocity = Vector2.ZERO
 			
 
 
