@@ -41,7 +41,7 @@ texture = ExtResource( 2 )
 position = Vector2( 101, 12 )
 
 [node name="Sign" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 214, 25 )
+position = Vector2( 202, 29 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 94, 84 )
