@@ -10,7 +10,10 @@ func _ready():
 func _state_logic(delta):
 	if state != states.interacting:
 		parent.move_player()
+	else:
+		parent.velocity = Vector2.ZERO
 	parent.interact()
+	
 	
 	if state == states.run:
 		parent.animationState.travel("Run")
@@ -33,7 +36,7 @@ func _get_transition(delta):
 				return states.interacting
 		states.interacting:
 			if parent.interactions.interacting == false:
-				if parent.velocity.x != 0 or parent.velocity.y != 0:
+				if (parent.velocity.x != 0) or (parent.velocity.y != 0):
 					return states.run
 				elif (parent.velocity.x == 0) and (parent.velocity.y == 0):
 					return states.idle
