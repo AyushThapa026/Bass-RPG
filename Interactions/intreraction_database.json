@@ -1,8 +1,8 @@
 {
 	"Note":{
 		"JSON_FILE" : "note_1",
+		"Type" : "Objects",
 		"Name" : "Note",
 		"Action" : "Read"
 	}
-
 }

@@ -1,0 +1,16 @@
+{
+    "000":{
+        "type" : "dialogue",
+        "speaker_id" : "none",
+        "portrait_id" : "none",
+        "text" : "Poverty is more widespread than ever. One in three families can't even afford to feed their bass children...",
+		"next" : "001"
+    },
+	"001":{
+		"type" : "dialogue",
+        "speaker_id" : "none",
+        "portrait_id" : "none",
+        "text" : "Sometimes I wish I could just leave Bassybia for the Human Realm...",
+		"next" : "none"
+	}
+}
