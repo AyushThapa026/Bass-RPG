@@ -7,7 +7,9 @@
 [ext_resource path="res://Interactions/Note/Note.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/FadeOut.gd" type="Script" id=6]
 [ext_resource path="res://Text/Text.tscn" type="PackedScene" id=7]
+
 [ext_resource path="res://Interactions/Note2/Note2.tscn" type="PackedScene" id=8]
+
 
 [sub_resource type="StreamTexture" id=1]
 
@@ -40,8 +42,10 @@ texture = ExtResource( 2 )
 [node name="Note" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 101, 12 )
 
+
 [node name="Note2" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 181.621, 9.07377 )
+
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 94, 84 )
