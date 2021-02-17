@@ -36,6 +36,7 @@ default_bus_layout=""
 [autoload]
 
 JsonLoader="*res://Scripts/json_loader.gd"
+Globals="*res://Scripts/Globals.gd"
 
 [display]
 
@@ -90,7 +91,7 @@ enter={
 
 [rendering]
 
-environment/default_clear_color=Color( 0.764706, 0.462745, 0.462745, 1 )
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
 
 [tiled_importer]
