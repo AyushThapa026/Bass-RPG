@@ -53,8 +53,6 @@ func _finished():
 		
 	finished = true
 
-func _continue():
-	print("passed")
 
 func _input(event):
 	if dialogue != null:
@@ -80,7 +78,7 @@ func _input(event):
 					selected_option -= 1
 					Arrow.position = get_node("pos" + str(selected_option)).position
 			elif Input.is_action_just_pressed("option_down"):
-				if selected_option < 3:
+				if selected_option < current_dialogue.responses.size():
 					selected_option += 1
 					Arrow.position = get_node("pos" + str(selected_option)).position
 			if Input.is_action_just_pressed("enter"):
