@@ -10,5 +10,11 @@
 		"Type" : "Objects",
 		"Name" : "Note",
 		"Action" : "Read"
+	},
+	"Bass":{
+		"JSON_FILE" : "bass",
+		"Type" : "NPCs",
+		"Name" : "Bass",
+		"Action" : "Talk to"
 	}
 }

@@ -22,7 +22,6 @@ signal interact
 
 func _ready():
 	database = JsonLoader.load_json_file("res://Interactions/interaction_database.json")
-	print(database)
 	
 
 
@@ -47,7 +46,6 @@ func interact():
 	if Input.is_action_pressed("interact"):
 		if interactions.ready_to_interact == true and interactions.interacting == false:
 			interactions.interacting = true
-			print('interacted')
 			emit_signal("interact", interactions)
 			velocity = Vector2.ZERO
 			
@@ -67,7 +65,7 @@ func _on_Area_area_entered(area):
 		interactions.object_to_interact =  {
 		"node" : object,
 		"database_index" : database[object.name],
-		}	
+		}
 
 
 func _on_Area_area_exited(area):

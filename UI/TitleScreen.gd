@@ -27,5 +27,4 @@ func _on_Play_pressed():
 	
 
 func change_scene():
-	print("change scene")
 	get_tree().change_scene("res://World/World.tscn")
