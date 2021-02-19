@@ -90,6 +90,32 @@ func _input(event):
 					option.visible = false
 				Arrow.visible = false
 				load_dialogue()
+				if current_dialogue.has("commands"):
+					for i in current_dialogue.commands:
+						execute(i)
+
+static func execute(command_line : String):
+	var args = command_line.split(" ")
+	if args.size() > 0:
+		var command = args[0]
+		args.remove(0)
+		match command:
+			"add": # add values to global values
+				var noun = args[0]
+				args.remove(0)
+				Globals.global_variables[noun] += int(args[0])
+				print('added ' + args[0] + " " + str(noun))
+			"set": # set global values
+				var variable = args[0]
+				args.remove(0)
+				Globals.global_variables[variable] = args[0]
+				print('set ' + str(variable) + " to " + args[0])
+			"subtract":
+				var noun = args[0]
+				args.remove(0)
+				Globals.global_variables[noun] -= int(args[0])
+				print('subtract ' + args[0] + " " + str(noun))
+
 
 func load_dialogue():# This dialogue is the same as the one above (line 18)
 	if dialogue != null:

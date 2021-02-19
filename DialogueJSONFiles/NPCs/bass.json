@@ -21,7 +21,10 @@
         "speaker_id" : "none",
         "portrait_id" : "none",
         "text" : "Glad you know.",
-		"next" : "none"
+		"next" : "none",
+		"commands" : [
+			"set material_wealth 10"
+		]
 	},
 	"003":{
 		"type" : "dialogue",
