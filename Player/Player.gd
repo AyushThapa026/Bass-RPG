@@ -22,7 +22,7 @@ signal interact
 
 func _ready():
 	database = JsonLoader.load_json_file("res://Interactions/interaction_database.json")
-	
+
 
 
 func move_player():
@@ -67,6 +67,15 @@ func _on_Area_area_entered(area):
 		"database_index" : database[object.name],
 		}
 
+func save():
+	var save_dict = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Vector2 is not supported by JSON
+		"pos_y" : position.y,
+		"global_variables" : Globals.global_variables
+	}
+	return save_dict
 
 func _on_Area_area_exited(area):
 	print("not in range to use object: " + area.get_owner().name)
@@ -74,3 +83,4 @@ func _on_Area_area_exited(area):
 	option.bbcode_text = ""
 	interactions.ready_to_interact = false
 	interactions.object_to_interact = null
+
