@@ -16,13 +16,17 @@ var selected_option = 1
 var selecting = false;
 
 
-func _ready():
-	player.connect("interact", self, "get_dialogue_from_JSON")
+func _ready():	
 	Arrow.visible = false
-
+	Datastore.connect("loaded", self, "_player_connect")
+	player.connect("interact", self, "get_dialogue_from_JSON")
+	
+func _player_connect():
+	player = Globals.global_variables.player
+	player.connect("interact", self, "get_dialogue_from_JSON")
+	
 func get_dialogue_from_JSON(interactions):
 	# Loads the JSON file from the path. The path being "res://DialogueJSONFiles(folder)/InteractableType/ObjectJSONFile
-
 	var database_index = interactions.object_to_interact.database_index
 	dialogue = JsonLoader.load_json_file("res://DialogueJSONFiles/" + str(database_index.Type) + "/" + str(database_index.JSON_FILE) + ".json")
 	
@@ -114,8 +118,8 @@ static func execute(command_line : String):
 				var noun = args[0]
 				args.remove(0)
 				Globals.global_variables[noun] -= int(args[0])
-				print('subtract ' + args[0] + " " + str(noun))
-
+				print('subtracted ' + args[0] + " " + str(noun))
+			
 
 func load_dialogue():# This dialogue is the same as the one above (line 18)
 	if dialogue != null:
@@ -125,6 +129,12 @@ func load_dialogue():# This dialogue is the same as the one above (line 18)
 				next.visible = false
 				visible = true
 				finished = false
+				
+				if (current_dialogue.speaker_id == "none") or (Globals.global_variables['knows_' + current_dialogue.speaker_id] == false):
+					get_node("speaker_id").bbcode_text = "[center]???[/center]"
+				else:
+					get_node("speaker_id").bbcode_text = "[center]" + str(current_dialogue.speaker_id).capitalize() + "[/center]"
+
 				match current_dialogue.type:
 					"dialogue":
 						var time : float = clamp(current_dialogue.text.length() / reveal_speed, 0.5, 10)
