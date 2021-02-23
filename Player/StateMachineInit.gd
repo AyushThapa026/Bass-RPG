@@ -43,7 +43,6 @@ func _get_transition(delta):
 	return null
 	
 func _enter_state(new_state, old_state):
-	print(states.keys()[new_state].capitalize())
 	parent.get_node("StateLabel").bbcode_text = "[center][rainbow]" + states.keys()[new_state].capitalize() + "[/rainbow][/center]"
 	
 	#print(states.keys()[new_state].capitalize())
