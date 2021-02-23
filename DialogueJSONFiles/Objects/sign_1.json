@@ -1,0 +1,17 @@
+{
+    "000":{
+        "type" : "dialogue",
+        "speaker_id" : "none",
+        "portrait_id" : "none",
+        "text" : "Speaking from the tongue of an experienced simpleton who obviously would rather be an emasculated, infantile complain-ee",
+		"next" : "001"
+    },
+	"001":{
+        "type" : "dialogue",
+        "speaker_id" : "none",
+        "portrait_id" : "none",
+        "text" : "This note should be pretty easy to understand.",
+		"next" : "001"
+    },
+	
+}

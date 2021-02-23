@@ -8,9 +8,8 @@ var global_variables = {
 
 var loaded = false
 
-func delay(time):
-	var timer = Timer.new()
-	timer.one_shot = true
-	timer.set_wait_time(time)
-	return timer
-
+func tweenPos(obj, parent, startpos, endpos):
+	var tween = Tween.new()
+	parent.add_child(tween)
+	tween.interpolate_property(obj, "position", startpos, endpos, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	return tween

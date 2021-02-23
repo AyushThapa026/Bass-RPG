@@ -3,7 +3,7 @@
 [ext_resource path="res://World/8-bit-hud.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/HUD.gd" type="Script" id=2]
 [ext_resource path="res://UI/top_UI.png" type="Texture" id=3]
-[ext_resource path="res://UI/boxes.png" type="Texture" id=4]
+[ext_resource path="res://World/boxes_white.png" type="Texture" id=4]
 [ext_resource path="res://Text/8-bit-hud.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Text/heart_small.png" type="Texture" id=6]
 
@@ -84,9 +84,14 @@ __meta__ = {
 }
 
 [node name="Boxes" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.584314 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.059
+anchor_top = 0.239
+anchor_right = 0.328
+anchor_bottom = 0.706
+margin_left = 0.119999
+margin_top = -0.0200005
+margin_right = 0.0399933
+margin_bottom = -0.0800018
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
