@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 
-onready var path_follow = get_parent()
+onready var state_machine
+onready var text = get_tree().get_root().find_node('Dialogue', true, false)
 
 
 var path = true
@@ -9,25 +10,20 @@ var speed = 125
 var move_direction = 0
 var vel = Vector2.ZERO
 var test = Vector2(100, 100)
- 
+
+
+
 func _ready():
-	move_to(test)
+	Datastore.connect("loaded", self, "_player_changed")
 
-func _physics_process(delta):
-
-	if Input.is_action_pressed("Path"):
-		var prepos = path_follow.get_position()
-		path_follow.set_offset(path_follow.get_offset() + speed * delta)
-		var pos = path_follow.get_position()
-		move_direction = (pos.angle_to_point(prepos) /3.14)*180
-		rotate(move_direction * -1)
-
+func _player_changed():
+	state_machine = Globals.global_variables.player.get_node('StateMachine')
  
 
 func move_to(pos: Vector2):
 	var position = get_position()
 	 #this is x and y for where it has to go
-	var x1 = Vector2 (pos.x, position.y)
+	var x1 = Vector2(pos.x, position.y)
 	var y1 = Vector2(position.x, pos.y)
 	#where it is
 	var x2 = position.x
@@ -44,11 +40,14 @@ func move_to(pos: Vector2):
 	tween.start()
 	yield(tween, "tween_completed")
 	print("second tween")
-	
+		
 	tween.interpolate_property(self, "position",
 	get_position(), Vector2(get_position().x , pos.y), time_y,
 	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+#else:
+#	yield(text, "text_finished")
+#			move_to(pos)
 
 
 
