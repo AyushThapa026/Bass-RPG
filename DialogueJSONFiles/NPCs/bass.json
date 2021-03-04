@@ -4,13 +4,17 @@
         "speaker_id" : "bass",
         "portrait_id" : "none",
         "text" : "ehffu9wehsfiosdh",
-		"next" : "001"
+		"next" : "001",
+		"commands" : [
+			"set material_wealth 10"
+		]
     },
 	"001":{
 		"type" : "response",
         "speaker_id" : "bass",
         "portrait_id" : "none",
         "text" : "Rhys is bad right?",
+		"next" : "002",
 		"responses" : {
 			"Yeah he is..." : {"next": "002"},
 			"Aryan is worse." : {"next": "003"},
@@ -21,7 +25,7 @@
         "speaker_id" : "bass",
         "portrait_id" : "none",
         "text" : "Glad you know.",
-		"next" : "none",
+		"next" : "none",	
 		"commands" : [
 			"set material_wealth 10"
 		]
@@ -30,7 +34,10 @@
 		"type" : "dialogue",
         "speaker_id" : "bass",
         "portrait_id" : "none",
-        "text" : "Maybe..",
-		"next" : "none"
+        "text" : "Maybe...",
+		"next" : "none",
+		"commands" : [
+			"move Bass 350 200"
+		]
 	},
 }

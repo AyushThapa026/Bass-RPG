@@ -6,6 +6,7 @@ onready var next = $next
 onready var Arrow = $Arrow
 onready var option_container = $OptionContainer
 onready var player = get_tree().get_root().find_node('Player', true, false)
+onready var Bass = get_node("res://scripts/Bass")
 var dialogue_index = "000"
 var finished = false
 var reveal_speed = 15
@@ -13,10 +14,10 @@ var dialogue
 var current_dialogue
 var response = false
 var selected_option = 1
-var selecting = false;
+var selecting = false
+signal text_finished
 
-
-func _ready():	
+func _ready():
 	Arrow.visible = false
 	Datastore.connect("loaded", self, "_player_connect")
 	player.connect("interact", self, "get_dialogue_from_JSON")
@@ -38,7 +39,7 @@ func _finished():
 		if current_dialogue.next != 'none':
 			dialogue_index = current_dialogue.next
 		next.visible = true
-	else:
+	elif response == true:
 		Arrow.visible = true
 		option_container.visible = true
 		selecting = true
@@ -64,13 +65,16 @@ func _input(event):
 			if Input.is_action_just_pressed("enter"):
 				if finished == true:
 					if current_dialogue.next == 'none':
+						if current_dialogue.has("commands"):
+							for i in current_dialogue.commands:
+								execute(i)
 						visible = false
+						emit_signal("text_finished")
 						dialogue = null
 						dialogue_index = "000"
 						current_dialogue = null
 						player.interactions.interacting = false
 						print('done interacting')
-					# get good at video games
 					load_dialogue()
 				else:
 					Tween.stop(Rich)
@@ -94,32 +98,27 @@ func _input(event):
 					option.visible = false
 				Arrow.visible = false
 				load_dialogue()
-				if current_dialogue.has("commands"):
-					for i in current_dialogue.commands:
-						execute(i)
 
-static func execute(command_line : String):
+func execute(command_line : String):
 	var args = command_line.split(" ")
 	if args.size() > 0:
 		var command = args[0]
 		args.remove(0)
 		match command:
 			"add": # add values to global values
-				var noun = args[0]
-				args.remove(0)
-				Globals.global_variables[noun] += int(args[0])
-				print('added ' + args[0] + " " + str(noun))
+				Globals.global_variables[args[0]] += int(args[1])
+				print('added ' + args[1] + " " + str(args[0]))
 			"set": # set global values
-				var variable = args[0]
-				args.remove(0)
-				Globals.global_variables[variable] = args[0]
-				print('set ' + str(variable) + " to " + args[0])
+				Globals.global_variables[args[0]] = args[1]
+				print('set ' + str(args[0]) + " to " + args[1])
 			"subtract":
-				var noun = args[0]
-				args.remove(0)
-				Globals.global_variables[noun] -= int(args[0])
-				print('subtracted ' + args[0] + " " + str(noun))
-			
+				Globals.global_variables[args[0]] -= int(args[1])
+				print('subtracted ' + args[1] + " " + str(args[0]))
+			"move":
+				var node = get_tree().get_root().find_node(args[0], true, false)
+				print ("getting node")
+				node.move_to(Vector2(args[1], args[2]))
+				print ("moving node")
 
 func load_dialogue():# This dialogue is the same as the one above (line 18)
 	if dialogue != null:
@@ -129,7 +128,6 @@ func load_dialogue():# This dialogue is the same as the one above (line 18)
 				next.visible = false
 				visible = true
 				finished = false
-				
 				if (current_dialogue.speaker_id == "none") or (Globals.global_variables['knows_' + current_dialogue.speaker_id] == false):
 					get_node("speaker_id").bbcode_text = "[center]???[/center]"
 				else:
@@ -155,7 +153,7 @@ func load_dialogue():# This dialogue is the same as the one above (line 18)
 							 Tween. TRANS_LINEAR, Tween. EASE_IN_OUT
 							)
 						Tween.start()
-						
+
 
 
 func _on_Tween_tween_completed(object, key):
